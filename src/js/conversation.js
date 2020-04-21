@@ -7,7 +7,7 @@ class Conversation {
         const msg = new SpeechSynthesisUtterance();
 
         msg.lang = texto["author"]["lang"];
-        msg.text = texto["author"].nombre + " " + texto["text"];
+        msg.text = texto["text"];
         msg.rate = texto["author"].parametros["rate"];
         msg.pitch = texto["author"].parametros["pitch"];
 
@@ -16,12 +16,19 @@ class Conversation {
     }
     frase(texto) {
         const caja = document.querySelector("#box");
+        var div = document.createElement('div');
+        div.className = "chat"
         var p = document.createElement('p');
+        var img = document.createElement('img');
         p.textContent = texto["author"].nombre + ": " + texto["text"];
         p.style = "color:" + texto["author"].parametros["color"]
+        img.src = texto["author"].img
 
         console.log(texto["text"]);
-        caja.appendChild(p);
+        caja.appendChild(div);
+        div.appendChild(img)
+        div.appendChild(p)
+
     }
     wordToWord(texto) {
 
