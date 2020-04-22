@@ -1,9 +1,9 @@
 parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcelRequire,u="function"==typeof require&&require;function f(t,n){if(!r[t]){if(!e[t]){var i="function"==typeof parcelRequire&&parcelRequire;if(!n&&i)return i(t,!0);if(o)return o(t,!0);if(u&&"string"==typeof t)return u(t);var c=new Error("Cannot find module '"+t+"'");throw c.code="MODULE_NOT_FOUND",c}p.resolve=function(r){return e[t][1][r]||r},p.cache={};var l=r[t]=new f.Module(t);e[t][0].call(l.exports,p,l,l.exports,this)}return r[t].exports;function p(e){return f(p.resolve(e))}}f.isParcelRequire=!0,f.Module=function(e){this.id=e,this.bundle=f,this.exports={}},f.modules=e,f.cache=r,f.parent=o,f.register=function(r,t){e[r]=[function(e,r){r.exports=t},{}]};for(var c=0;c<t.length;c++)try{f(t[c])}catch(e){i||(i=e)}if(t.length){var l=f(t[t.length-1]);"object"==typeof exports&&"undefined"!=typeof module?module.exports=l:"function"==typeof define&&define.amd?define(function(){return l}):n&&(this[n]=l)}if(parcelRequire=f,i)throw i;return f}({"qlIE":[function(require,module,exports) {
-module.exports="/dsi-p2-jspotify-alu0100944723/Breadman.ed0ce87e.png";
+module.exports="/dsi-p3-synth-alu0100944723/Breadman.ed0ce87e.png";
 },{}],"jq0k":[function(require,module,exports) {
-module.exports="/dsi-p2-jspotify-alu0100944723/Manz.2683b87d.png";
+module.exports="/dsi-p3-synth-alu0100944723/Manz.2683b87d.png";
 },{}],"ePAF":[function(require,module,exports) {
-module.exports="/dsi-p2-jspotify-alu0100944723/Robot.1f2fde41.png";
+module.exports="/dsi-p3-synth-alu0100944723/Robot.1f2fde41.png";
 },{}],"HBCd":[function(require,module,exports) {
 module.exports={Breadman:require("./Breadman.png"),Manz:require("./Manz.png"),Robot:require("./Robot.png")};
 },{"./Breadman.png":"qlIE","./Manz.png":"jq0k","./Robot.png":"ePAF"}],"JCXk":[function(require,module,exports) {
@@ -13,4 +13,4 @@ module.exports={Breadman:require("./Breadman.png"),Manz:require("./Manz.png"),Ro
 },{}],"QvaY":[function(require,module,exports) {
 "use strict";var e=a(require("./profile.js")),t=a(require("./conversation.js"));function a(e){return e&&e.__esModule?e:{default:e}}var o=document.querySelector("#Frase"),r=document.querySelector("#Palabra"),n=new e.default("Manz",{lang:"es",rate:2,pitch:1,color:"#ff0000"}),u=new e.default("Robot",{lang:"en",rate:1,pitch:1,color:"blue"}),c=new e.default("Breadman",{lang:"es",rate:2,pitch:3,color:"green"}),l=new t.default([{author:n,text:"¡Hola a todos! ¿Qué tal están?"},{author:u,text:"Muy bien, ¡gracias!"},{author:c,text:"Yo también muy bien"},{author:n,text:"El robot habla con un acento un tanto raro..."},{author:u,text:"Es que soy del norte"}]);o.onclick=function(){l.iniciar("s")},r.onclick=function(){l.iniciar("w")};
 },{"./profile.js":"JCXk","./conversation.js":"ftND"}]},{},["QvaY"], null)
-//# sourceMappingURL=/dsi-p2-jspotify-alu0100944723/js.2366e812.js.map
+//# sourceMappingURL=/dsi-p3-synth-alu0100944723/js.2366e812.js.map
