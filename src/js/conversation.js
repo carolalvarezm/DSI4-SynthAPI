@@ -3,15 +3,21 @@ class Conversation {
         this.text = text;
     }
 
-    sintetizar(texto) {
+    sintetizar(texto, opcion) {
         const msg = new SpeechSynthesisUtterance();
 
         msg.lang = texto["author"]["lang"];
         msg.text = texto["text"];
         msg.rate = texto["author"].parametros["rate"];
         msg.pitch = texto["author"].parametros["pitch"];
-
-        msg.onstart = () => { this.frase(texto) };
+        console.log(opcion)
+        if (opcion == 's') {
+            msg.onstart = () => { this.frase(texto) };
+        } else if (opcion == 'w') {
+            msg.onboundary = (event) => {
+                console.log(event.utterance.text)
+            };
+        }
         speechSynthesis.speak(msg);
     }
     frase(texto) {
@@ -37,9 +43,9 @@ class Conversation {
 
     }
 
-    iniciar() {
+    iniciar(opcion) {
         for (let i of this.text) {
-            this.sintetizar(i)
+            this.sintetizar(i, opcion)
         }
     }
 
