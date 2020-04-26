@@ -3,51 +3,82 @@ class Conversation {
         this.text = text;
     }
 
-    sintetizar(texto, opcion) {
+    sintetizar(texto, opcion, div, caja, p, img) {
+
+
         const msg = new SpeechSynthesisUtterance();
 
-        msg.lang = texto["author"]["lang"];
+        msg.lang = texto["author"].lenguaje;
         msg.text = texto["text"];
-        msg.rate = texto["author"].parametros["rate"];
-        msg.pitch = texto["author"].parametros["pitch"];
-        console.log(opcion)
-        if (opcion == 's') {
-            msg.onstart = () => { this.frase(texto) };
-        } else if (opcion == 'w') {
+        msg.rate = texto["author"].rate;
+        msg.pitch = texto["author"].pitch;
+
+
+        if (opcion === 's') {
+            msg.onstart = () => {
+                img.src = texto["author"].img
+                div.className = "chat"
+                caja.appendChild(div);
+                div.appendChild(img)
+                div.appendChild(p)
+                this.frase(texto, div)
+
+            };
+        } else if (opcion === 'w') {
+
+            msg.onstart = () => {
+                div.className = "chat"
+                img.src = texto["author"].img
+                caja.appendChild(div);
+                div.appendChild(img);
+                div.appendChild(p);
+
+
+            };
             msg.onboundary = (event) => {
-                console.log(event.utterance.text)
+                if (event.name === "word") {
+                    const start = event.charIndex;
+                    const end = start + event.charLength
+                    let palabra = msg.text.substring(start, end);
+                    this.wordToWord(palabra, div, texto)
+
+                }
             };
         }
+
         speechSynthesis.speak(msg);
+
     }
-    frase(texto) {
-        const caja = document.querySelector("#box");
-        var div = document.createElement('div');
-        div.className = "chat"
-        var p = document.createElement('p');
-        var img = document.createElement('img');
+    frase(texto, div) {
+        let p = div.childNodes[1]
         p.textContent = texto["author"].nombre + ": " + texto["text"];
-        p.style = "color:" + texto["author"].parametros["color"]
-        img.src = texto["author"].img
+        p.style = "color:" + texto["author"].color
+        div.childNodes[1].data = p;
+    }
 
-        console.log(texto["text"]);
-        caja.appendChild(div);
-        div.appendChild(img)
-        div.appendChild(p)
+
+    wordToWord(palabra, div, texto) {
+
+        let p = div.childNodes[1];
+        p.textContent = p.textContent + " " + palabra;
+        p.style = "color:" + texto["author"].color;
+        div.childNodes[1].data = p;
 
     }
-    wordToWord(texto) {
 
-    }
-    letterToLetter(texto) {
-
-    }
 
     iniciar(opcion) {
+
         for (let i of this.text) {
-            this.sintetizar(i, opcion)
+            const div = document.createElement('div');
+            const caja = document.querySelector("#box");
+            const p = document.createElement('p');
+            const img = document.createElement('img');
+            this.sintetizar(i, opcion, div, caja, p, img)
+
         }
     }
+
 
 }
 export default Conversation;
