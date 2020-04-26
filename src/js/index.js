@@ -3,7 +3,7 @@ import Conversation from "./conversation.js";
 
 const Frase = document.querySelector("#Frase")
 const Palabra = document.querySelector("#Palabra")
-
+const Letra = document.querySelector("#Letra")
 var manzProfile = new Profile("Manz", {
     lang: "es",
     rate: 1.0,
@@ -37,4 +37,9 @@ Frase.onclick = () => {
 Palabra.onclick = () => {
 
     ejemplo2.iniciar("w");
+}
+
+Letra.onclick = () => {
+
+    ejemplo2.iniciar("l");
 }

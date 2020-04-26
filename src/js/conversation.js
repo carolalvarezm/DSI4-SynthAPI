@@ -39,10 +39,30 @@ class Conversation {
                 if (event.name === "word") {
                     const start = event.charIndex;
                     const end = start + event.charLength
-                    let palabra = msg.text.substring(start, end);
+                    let palabra = texto["text"].substring(start, end);
                     this.wordToWord(palabra, div, texto)
 
                 }
+            };
+        } else if (opcion === 'l') {
+            console.log("Letra")
+            msg.onstart = () => {
+                div.className = "chat"
+                img.src = texto["author"].img
+                caja.appendChild(div);
+                div.appendChild(img);
+                div.appendChild(p);
+
+
+            };
+            msg.onboundary = (event) => {
+                if (event.name === "word") {
+                    const start = event.charIndex;
+                    const end = start + event.charLength
+                    let palabra = texto["text"].substring(start, end) + " ";
+                    this.letterToLetter(palabra, div, texto)
+                }
+
             };
         }
 
@@ -66,6 +86,18 @@ class Conversation {
 
     }
 
+    letterToLetter(palabra, div, texto) {
+
+        let p = div.childNodes[1];
+        p.style = "color:" + texto["author"].color;
+        var j = 0;
+        for (let i = 0; i < palabra.length; i++) {
+            setTimeout(function() {
+                p.textContent = p.textContent + palabra.charAt(i)
+                div.childNodes[1].data = p;
+            }, (25 * i))
+        }
+    }
 
     iniciar(opcion) {
 
