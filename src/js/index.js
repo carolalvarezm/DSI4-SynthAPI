@@ -28,7 +28,7 @@ var conversacion = new Conversation([
     { author: AldeanoProfile, text: "Yo también muy bien" },
     { author: TomNookProfile, text: "Bueno, yo venía a hablarles del precio del alquiler" },
     { author: CanelaProfile, text: "Uy, acabo de recordar que tengo algo que hacer" },
-    { author: AldeanoProfile, text: "Yo también me voy yendo ya mejor" },
+    { author: AldeanoProfile, text: "Yo también me voy yendo ya" },
 ]);
 Frase.onclick = () => {
 

@@ -3,8 +3,10 @@ class Conversation {
         this.text = text;
     }
 
-    sintetizar(texto, opcion, div, caja, p, img) {
+    sintetizar(texto, opcion, div) {
 
+        const p = document.createElement('p');
+        const img = document.createElement('img');
 
         const msg = new SpeechSynthesisUtterance();
 
@@ -18,9 +20,8 @@ class Conversation {
             msg.onstart = () => {
                 img.src = texto["author"].img
                 div.className = "chat"
-                caja.appendChild(div);
-                div.appendChild(img)
-                div.appendChild(p)
+                div.appendChild(img);
+                div.appendChild(p);
                 this.frase(texto, div)
 
             };
@@ -29,11 +30,7 @@ class Conversation {
             msg.onstart = () => {
                 div.className = "chat"
                 img.src = texto["author"].img
-                caja.appendChild(div);
                 div.appendChild(img);
-                div.appendChild(p);
-
-
             };
             msg.onboundary = (event) => {
                 if (event.name === "word") {
@@ -49,11 +46,7 @@ class Conversation {
             msg.onstart = () => {
                 div.className = "chat"
                 img.src = texto["author"].img
-                caja.appendChild(div);
                 div.appendChild(img);
-                div.appendChild(p);
-
-
             };
             msg.onboundary = (event) => {
                 if (event.name === "word") {
@@ -102,11 +95,10 @@ class Conversation {
     iniciar(opcion) {
 
         for (let i of this.text) {
-            const div = document.createElement('div');
             const caja = document.querySelector("#box");
-            const p = document.createElement('p');
-            const img = document.createElement('img');
-            this.sintetizar(i, opcion, div, caja, p, img)
+            const div = document.createElement('div');
+            caja.appendChild(div);
+            this.sintetizar(i, opcion, div)
 
         }
     }
