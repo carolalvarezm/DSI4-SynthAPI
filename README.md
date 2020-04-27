@@ -145,6 +145,7 @@ else if (opcion === 'w') {
                 div.className = "chat"
                 img.src = texto["author"].img
                 div.appendChild(img);
+                div.appendChild(p);
             };
 
         }
@@ -183,6 +184,7 @@ else if (opcion === 'l') {
                 div.className = "chat"
                 img.src = texto["author"].img
                 div.appendChild(img);
+                div.appendChild(p);
             };
             msg.onboundary = (event) => {
                 if (event.name === "word") {
@@ -202,13 +204,14 @@ else if (opcion === 'l') {
 
         let p = div.childNodes[1];
         p.style = "color:" + texto["author"].color;
-        var j = 0;
         for (let i = 0; i < palabra.length; i++) {
-            setTimeout(function() {
+            console.log(palabra.charAt(i))
+            let time = setTimeout(function() {
                 p.textContent = p.textContent + palabra.charAt(i)
                 div.childNodes[1].data = p;
             }, (25 * i))
         }
+        clearTimeout(time)
     }
 
 ```
