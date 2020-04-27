@@ -135,7 +135,7 @@ const msg = new SpeechSynthesisUtterance();
         div.childNodes[1].data = p;
     }
 ```
-![Frase a Frase](https://github.com/ULL-ESIT-DSI-1920/dsi-p3-synth-alu0100944723/blob/master/src/assets/Capturas_Readme/FraseAFrase.png)
+![Frase a Frase](https://github.com/ULL-ESIT-DSI-1920/dsi-p3-synth-alu0100944723/blob/master/src/assets/Capturas_Readme/FraseAFrase.gif)
 ### Palabra a palabra
 * Para el palabra a palabra como en el anterior lo primero que hacemos es utilizar el evento onstart para cuando empiece a ejecutarse el sintetizador añadir la imagen y la clase *chat* al div:
 ```javascript
@@ -174,7 +174,7 @@ else if (opcion === 'w') {
     }
 ```
 
-![Palabra a Palabra](https://github.com/ULL-ESIT-DSI-1920/dsi-p3-synth-alu0100944723/blob/master/src/assets/Capturas_Readme/PalabraAPalabra.png)
+![Palabra a Palabra](https://github.com/ULL-ESIT-DSI-1920/dsi-p3-synth-alu0100944723/blob/master/src/assets/Capturas_Readme/PalabraAPalabra.gif)
 ### Letra a Letra
 * Para el método de letra a letra en primer lugar hacemos como en el anterior el evento onstart para cuando empiece a ejecutarse el reproducirse añadir la imagen y la clase *chat* al div:
 ```javascript
@@ -216,7 +216,7 @@ else if (opcion === 'l') {
 
 ```
 
-![Letra a Letra](https://github.com/ULL-ESIT-DSI-1920/dsi-p3-synth-alu0100944723/blob/master/src/assets/Capturas_Readme/LetraALetra.png)
+![Letra a Letra](https://github.com/ULL-ESIT-DSI-1920/dsi-p3-synth-alu0100944723/blob/master/src/assets/Capturas_Readme/LetraALetra.gif)
 
 ## CSS
 * El CSS que he utilizado en esta práctica es mínimo y se muestra a continuación:
