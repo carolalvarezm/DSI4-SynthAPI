@@ -90,7 +90,7 @@ class Conversation {
             setTimeout(function() {
                 p.textContent = p.textContent + palabra.charAt(i)
                 div.childNodes[1].data = p;
-            }, (palabra.length * i - 1))
+            }, (palabra.length * i))
         }
     }
 
