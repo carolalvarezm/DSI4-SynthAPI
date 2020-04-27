@@ -4,42 +4,43 @@ import Conversation from "./conversation.js";
 const Frase = document.querySelector("#Frase")
 const Palabra = document.querySelector("#Palabra")
 const Letra = document.querySelector("#Letra")
-var manzProfile = new Profile("Manz", {
+var CanelaProfile = new Profile("Canela", {
     lang: "es",
     rate: 1.0,
     pitch: 1.0,
     color: "#ff0000",
 });
-var robotProfile = new Profile("Robot", {
-    lang: "en",
-    rate: 1.0,
-    pitch: 4.0,
-    color: "blue",
-});
-var breadmanProfile = new Profile("Breadman", {
+var TomNookProfile = new Profile("TomNook", {
     lang: "es",
     rate: 1.0,
-    pitch: 3.0,
+    pitch: 2.0,
+    color: "blue",
+});
+var AldeanoProfile = new Profile("Aldeano", {
+    lang: "es",
+    rate: 1.0,
+    pitch: 3.5,
     color: "green",
 });
-var ejemplo2 = new Conversation([
-    { author: manzProfile, text: "¡Hola a todos! ¿Qué tal están?" },
-    { author: robotProfile, text: "Muy bien, ¡gracias!" },
-    { author: breadmanProfile, text: "Yo también muy bien" },
-    { author: manzProfile, text: "El robot habla con un acento un tanto raro..." },
-    { author: robotProfile, text: "Es que soy del norte" },
+var conversacion = new Conversation([
+    { author: TomNookProfile, text: "¡Hola a todos! ¿Qué tal están?" },
+    { author: CanelaProfile, text: "Muy bien, ¡gracias!" },
+    { author: AldeanoProfile, text: "Yo también muy bien" },
+    { author: TomNookProfile, text: "Bueno, yo venía a hablarles del precio del alquiler" },
+    { author: CanelaProfile, text: "Uy, acabo de recordar que tengo algo que hacer" },
+    { author: AldeanoProfile, text: "Yo también me voy yendo ya mejor" },
 ]);
 Frase.onclick = () => {
 
-    ejemplo2.iniciar("s");
+    conversacion.iniciar("s");
 }
 
 Palabra.onclick = () => {
 
-    ejemplo2.iniciar("w");
+    conversacion.iniciar("w");
 }
 
 Letra.onclick = () => {
 
-    ejemplo2.iniciar("l");
+    conversacion.iniciar("l");
 }
