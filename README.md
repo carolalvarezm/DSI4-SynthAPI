@@ -113,7 +113,7 @@ const msg = new SpeechSynthesisUtterance();
 ``` 
 ### Frase a Frase
 * Para que aparezca frase a frase en la pantalla lo primero que hacemos es ver si la opción utilizada es la 's'(de sentence).
-* Una vez hecho esto añadimos un manejador de evento para que cuanto empiece el sintetizador a reproducirse aparezcan en el html la frase:
+* Una vez hecho esto añadimos un manejador de evento para que cuanto empiece el sintetizador a reproducirse aparezcan en el html la frase. Añadimos también la imagen del perfil y le añadimos la clase *chat* al div, con la que le daremos formato en el css:
 ```javascript
  if (opcion === 's') {
             msg.onstart = () => {
@@ -126,7 +126,7 @@ const msg = new SpeechSynthesisUtterance();
             };
         }
 ```
-* La función frase simplemente añade el nombre del perfil y el texto. Además añadimos el color, añadiendo estilo desde javascript, que estaba en el perfil. Finalmente lo añadimos en el html.
+* El método frase simplemente añade el nombre del perfil y el texto. Además añadimos el color, añadiendo estilo desde javascript, que estaba en el perfil. Finalmente lo añadimos en el html.
 ```javascript
     frase(texto, div) {
         let p = div.childNodes[1]
@@ -137,4 +137,104 @@ const msg = new SpeechSynthesisUtterance();
 ```
 ![Frase a Frase]()
 ### Palabra a palabra
+* Para el palabra a palabra como en el anterior lo primero que hacemos es utilizar el evento onstart para cuando empiece a ejecutarse el sintetizador añadir la imagen y la clase *chat* al div:
+```javascript
+else if (opcion === 'w') {
+
+            msg.onstart = () => {
+                div.className = "chat"
+                img.src = texto["author"].img
+                div.appendChild(img);
+            };
+
+        }
+```
+* Lo otro que hacemos es añadir otro evento, este ejecutará nuestra función en los límites de frase/palabra. Por tanto cuando el evento se ejecute al final de una palabra, ```if (event.name === "word") {```, cogemos el índice donde se encuentra en la frase y la longitud de la palabra para coger una subcadena que contenga la palabra. Esta palabra se la pasamos al método wordToWord que la incluirá en el html:
+```javascript
+            msg.onboundary = (event) => {
+                if (event.name === "word") {
+                    const start = event.charIndex;
+                    const end = start + event.charLength
+                    let palabra = texto["text"].substring(start, end);
+                    this.wordToWord(palabra, div, texto)
+
+                }
+            };
+```
+* El método wordToWord hace casi lo mismo que el anterior de frase sólo añadiendo los espacios entre las palabras:
+```javascript
+    wordToWord(palabra, div, texto) {
+
+        let p = div.childNodes[1];
+        p.textContent = p.textContent + " " + palabra;
+        p.style = "color:" + texto["author"].color;
+        div.childNodes[1].data = p;
+
+    }
+```
+
+![Palabra a Palabra]()
 ### Letra a Letra
+* Para el método de letra a letra en primer lugar hacemos como en el anterior el evento onstart para cuando empiece a ejecutarse el reproducirse añadir la imagen y la clase *chat* al div:
+```javascript
+else if (opcion === 'l') {
+            console.log("Letra")
+            msg.onstart = () => {
+                div.className = "chat"
+                img.src = texto["author"].img
+                div.appendChild(img);
+            };
+            msg.onboundary = (event) => {
+                if (event.name === "word") {
+                    const start = event.charIndex;
+                    const end = start + event.charLength
+                    let palabra = texto["text"].substring(start, end) + " ";
+                    this.letterToLetter(palabra, div, texto)
+                }
+
+            };
+```
+* También añadimos un evento onboundary() en el que hacemos exactamente lo mismo que en el anterior como podemos ver.
+* Finalmente el método letterToLetter lo que hacemos es como en los anteriores al principio añadir el color del perfil como estilo.
+* Después hacemos para cada letra de la palabra que nos han pasado un ```setTimeout()''' en el que actualizamos el contenido del párrafo letra a letra añadiendolo al html:
+```javascript
+    letterToLetter(palabra, div, texto) {
+
+        let p = div.childNodes[1];
+        p.style = "color:" + texto["author"].color;
+        var j = 0;
+        for (let i = 0; i < palabra.length; i++) {
+            setTimeout(function() {
+                p.textContent = p.textContent + palabra.charAt(i)
+                div.childNodes[1].data = p;
+            }, (25 * i))
+        }
+    }
+
+```
+
+![Letra a Letra]()
+
+## CSS
+* El CSS que he utilizado en esta práctica es mínimo y se muestra a continuación:
+```css
+.chat {
+    display: flex;
+    width: 1200px;
+    background-color: black;
+}
+
+#box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+}
+```
+* Para ver el resultado de esta práctica la he desplegado en gh-pages y puede verse en la siguiente [url](https://ull-esit-dsi-1920.github.io/dsi-p3-synth-alu0100944723/)

@@ -99,7 +99,6 @@ class Conversation {
             const div = document.createElement('div');
             caja.appendChild(div);
             this.sintetizar(i, opcion, div)
-
         }
     }
 
