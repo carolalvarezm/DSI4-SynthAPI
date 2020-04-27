@@ -96,7 +96,7 @@ export default Profile;
     }
 
 ```
-* La función Sintetizar lo primero que hace es instanciar un ``` ``` y darle las propiedades guardadas en el perfil:
+* La función Sintetizar lo primero que hace es instanciar un ```SpeechSynthesisUtterance();``` y darle las propiedades guardadas en el perfil:
 ```javascript
 const msg = new SpeechSynthesisUtterance();
 
@@ -112,7 +112,29 @@ const msg = new SpeechSynthesisUtterance();
  speechSynthesis.speak(msg);
 ``` 
 ### Frase a Frase
+* Para que aparezca frase a frase en la pantalla lo primero que hacemos es ver si la opción utilizada es la 's'(de sentence).
+* Una vez hecho esto añadimos un manejador de evento para que cuanto empiece el sintetizador a reproducirse aparezcan en el html la frase:
+```javascript
+ if (opcion === 's') {
+            msg.onstart = () => {
+                img.src = texto["author"].img
+                div.className = "chat"
+                div.appendChild(img);
+                div.appendChild(p);
+                this.frase(texto, div)
 
+            };
+        }
+```
+* La función frase simplemente añade el nombre del perfil y el texto. Además añadimos el color, añadiendo estilo desde javascript, que estaba en el perfil. Finalmente lo añadimos en el html.
+```javascript
+    frase(texto, div) {
+        let p = div.childNodes[1]
+        p.textContent = texto["author"].nombre + ": " + texto["text"];
+        p.style = "color:" + texto["author"].color
+        div.childNodes[1].data = p;
+    }
+```
+![Frase a Frase]()
 ### Palabra a palabra
-
 ### Letra a Letra
