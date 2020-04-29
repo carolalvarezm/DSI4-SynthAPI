@@ -1,5 +1,5 @@
-import Profile from "./profile.js";
-import Conversation from "./conversation.js";
+import Profile from "./Profile.js";
+import Conversation from "./Conversation.js";
 
 const Frase = document.querySelector("#Frase")
 const Palabra = document.querySelector("#Palabra")
